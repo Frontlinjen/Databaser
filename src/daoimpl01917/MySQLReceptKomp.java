@@ -57,13 +57,14 @@ public class MySQLReceptKomp implements ReceptKompDAO{
 
 	@Override
 	public void createReceptKomp(ReceptKompDTO receptkomponent) throws DALException {
-		// TODO Auto-generated method stub
-		
+		Connector.doUpdate("INSERT INTO receptKomponent(receptId, raavareId, nomNetto, tolerance) VALUES (" + receptkomponent.getReceptId() + ","
+		+ receptkomponent.getRaavareId() + "," + receptkomponent.getNomNetto() + "," + receptkomponent.getTolerance());
 	}
 
 	@Override
 	public void updateReceptKomp(ReceptKompDTO receptkomponent) throws DALException {
-		// TODO Auto-generated method stub
+		Connector.doUpdate("UPDATE receptKomponent Set nomNetto = '" + receptkomponent.getNomNetto() + "', tolerance = '"
+		+ receptkomponent.getTolerance() + "' WHERE receptId = " + receptkomponent.getReceptId() + " AND raavareId = " + receptkomponent.getRaavareId());
 		
 	}
 
