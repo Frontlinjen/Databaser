@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import connector01917.Connector;
 import daointerfaces01917.DALException;
 import daointerfaces01917.ReceptKompDAO;
+import dto01917.AnsatDTO;
 import dto01917.ReceptKompDTO;
 
 public class MySQLReceptKomp implements ReceptKompDAO{
@@ -25,15 +26,34 @@ public class MySQLReceptKomp implements ReceptKompDAO{
 
 	@Override
 	public List<ReceptKompDTO> getReceptKompList(int receptId) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		List<ReceptKompDTO> list = new ArrayList<ReceptKompDTO>();
+		ResultSet rs = Connector.doQuery("SELECT * FROM receptKomponent WHERE receptId = " + receptId);
+		try
+		{
+			while (rs.next()) 
+			{
+				list.add(new ReceptKompDTO(rs.getInt("receptId"), rs.getInt("raavareId"), rs.getDouble("nomNetto"), rs.getDouble("tolerance")));
+			}
+		}
+		catch (SQLException e) { throw new DALException(e); }
+		return list;
 	}
 
 	@Override
 	public List<ReceptKompDTO> getReceptKompList() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		List<ReceptKompDTO> list = new ArrayList<ReceptKompDTO>();
+		ResultSet rs = Connector.doQuery("SELECT * FROM receptKomponent");
+		try
+		{
+			while (rs.next()) 
+			{
+				list.add(new ReceptKompDTO(rs.getInt("receptId"), rs.getInt("raavareId"), rs.getDouble("nomNetto"), rs.getDouble("tolerance")));
+			}
+		}
+		catch (SQLException e) { throw new DALException(e); }
+		return list;
 	}
+	
 
 	@Override
 	public void createReceptKomp(ReceptKompDTO receptkomponent) throws DALException {
