@@ -3,32 +3,32 @@ package dto01917;
 public class ProduktBatchKompDTO 
 {
 	int pbId; 	  // produktbatchets id
-	int rbId;        // i omraadet 1-99999999
+	int raavareId;        // raavarens id
 	double tara;
 	double netto;
-	int oprId;					// operatoer-nummer
+	String cpr;					// cpr-nummer for operatøren
 
 	
-	public ProduktBatchKompDTO(int pbId, int rbId, double tara, double netto, int oprId)
+	public ProduktBatchKompDTO(int pbId, int raavareId, double tara, double netto, String cpr)
 	{
 		this.pbId = pbId;
-		this.rbId = rbId;
+		this.raavareId = raavareId;
 		this.tara = tara;
 		this.netto = netto;
-		this.oprId = oprId;
+		this.cpr = cpr;
 	}
 	
 	public int getPbId() { return pbId; }
 	public void setPbId(int pbId) { this.pbId = pbId; }
-	public int getRbId() { return rbId; }
-	public void setRbId(int rbId) { this.rbId = rbId; }
+	public int getRaavareId() { return raavareId; }
+	public void setRaavareId(int raavareId) { this.raavareId = raavareId; }
 	public double getTara() { return tara; }
 	public void setTara(double tara) { this.tara = tara; }
 	public double getNetto() { return netto; }
 	public void setNetto(double netto) { this.netto = netto; }
-	public int getOprId() { return oprId; }
-	public void setOprId(int oprId) { this.oprId = oprId; }
+	public String getCpr() { return cpr; }
+	public void setCpr(String cpr) { this.cpr = cpr; }
 	public String toString() { 
-		return pbId + "\t" + rbId +"\t" + tara +"\t" + netto + "\t" + oprId ; 
+		return pbId + "\t" + raavareId +"\t" + tara +"\t" + netto + "\t" + cpr ; 
 	}
 }
