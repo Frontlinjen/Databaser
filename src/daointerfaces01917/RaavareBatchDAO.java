@@ -5,7 +5,7 @@ import java.util.List;
 import dto01917.RaavareBatchDTO;
 
 public interface RaavareBatchDAO {
-	RaavareBatchDTO getRaavareBatch(int rbId) throws DALException;
+	RaavareBatchDTO getRaavareBatch(int rvId, String leverandoer) throws DALException;
 	List<RaavareBatchDTO> getRaavareBatchList() throws DALException;
 	List<RaavareBatchDTO> getRaavareBatchList(int raavareId) throws DALException;
 	void createRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException;
