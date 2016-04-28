@@ -12,7 +12,7 @@ import dto01917.AnsatDTO;
 
 public class MySQLAnsatDAO implements AnsatDAO {
 	public AnsatDTO getAnsat(String cpr) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM ansat WHERE cpr = " + cpr);
+		ResultSet rs = Connector.doQuery("SELECT * FROM ansat WHERE cpr = " + cpr + ";");
 	    try {
 	    	if (!rs.first()) throw new DALException("Den ansatte med cprnr " + cpr + " findes ikke");
 	    	return new AnsatDTO (rs.getString("cpr"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("password"), rs.getInt("titel"));
@@ -25,7 +25,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 			Connector.doUpdate(
 				"INSERT INTO operatoer(cpr, opr_navn, ini, password, titel) VALUES " +
 				"(" + ans.getCpr() + ", '" + ans.getOprNavn() + "', '" + ans.getIni() + "', '" + 
-				ans.getPassword() + "', '" + ans.getTitel() + "')"
+				ans.getPassword() + "', '" + ans.getTitel() + "');"
 			);
 	}
 	
@@ -33,13 +33,13 @@ public class MySQLAnsatDAO implements AnsatDAO {
 		Connector.doUpdate(
 				"UPDATE operatoer SET  opr_navn = '" + ans.getOprNavn() + "', ini =  '" + ans.getIni() + 
 				"', password = '" + ans.getPassword() + "', titel = '" + ans.getTitel() + "' WHERE cpr = " +
-				ans.getCpr()
+				ans.getCpr() + ";"
 		);
 	}
 	
 	public List<AnsatDTO> getAnsatList() throws DALException {
 		List<AnsatDTO> list = new ArrayList<AnsatDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer");
+		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer;");
 		try
 		{
 			while (rs.next()) 
