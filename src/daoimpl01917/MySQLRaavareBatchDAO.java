@@ -15,7 +15,7 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
 
 	@Override
 	public RaavareBatchDTO getRaavareBatch(int rvId, String leverandoer) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer WHERE raavare_id = " + rvId + " AND leverandoer_navn = " + leverandoer);
+		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer WHERE raavare_id = " + rvId + " AND leverandoer_navn = " + leverandoer + ";");
 		
 		try{
 			if(!rs.first()) 
@@ -30,7 +30,7 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
 
 	@Override
 	public List<RaavareBatchDTO> getRaavareBatchList() throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer");
+		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer;");
 		return populateList(rs);
 	}
 	public List<RaavareBatchDTO> populateList(ResultSet rs) throws DALException
@@ -53,20 +53,20 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
 	}
 	@Override
 	public List<RaavareBatchDTO> getRaavareBatchList(int raavareId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer WHERE raavare_id = " + raavareId);
+		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer WHERE raavare_id = " + raavareId + ";");
 		return populateList(rs);
 	}
 
 	@Override
 	public void createRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
-		int updateCount = Connector.doUpdate(String.format("INSERT INTO leverandoer(raavare_id, leverandoer_navn, maengde) values(%i, %s, %d", raavarebatch.getRaavareId(),  raavarebatch.getLeverandoerNavn(), raavarebatch.getMaengde()));
+		int updateCount = Connector.doUpdate(String.format("INSERT INTO leverandoer(raavare_id, leverandoer_navn, maengde) values(%i, %s, %d", raavarebatch.getRaavareId(),  raavarebatch.getLeverandoerNavn(), raavarebatch.getMaengde() + ";"));
 		if(updateCount==0)
 			throw new DALException("Failed to add new raavarebatch!");
 	}
 
 	@Override
 	public void updateRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
-		int updateCount = Connector.doUpdate(String.format("UPDATE leverandoer SET (maengde=%d) WHERE raavare_id=raavare_id=%i AND leverandoer_navm=%s", raavarebatch.getMaengde(), raavarebatch.getRaavareId(),  raavarebatch.getLeverandoerNavn()));
+		int updateCount = Connector.doUpdate(String.format("UPDATE leverandoer SET (maengde=%d) WHERE raavare_id=raavare_id=%i AND leverandoer_navm=%s", raavarebatch.getMaengde(), raavarebatch.getRaavareId(),  raavarebatch.getLeverandoerNavn() + ";"));
 		if(updateCount==0)
 			throw new DALException("Failed to update raavarebatch!");
 		

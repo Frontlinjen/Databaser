@@ -16,7 +16,7 @@ public class MySQLRaavareDAO implements RaavareDAO{
 
 	@Override
 	public RaavareDTO getRaavare(int raavareId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM raavare WHERE raavare_id = " + raavareId);
+		ResultSet rs = Connector.doQuery("SELECT * FROM raavare WHERE raavare_id = " + raavareId + ";");
 		try{
 			if(!rs.first()) throw new DALException("Raavaren " + raavareId + " findes ikke.");
 			return new RaavareDTO (rs.getInt("raavare_id"), rs.getString("raavare_navn"));
@@ -28,7 +28,7 @@ public class MySQLRaavareDAO implements RaavareDAO{
 	@Override
 	public List<RaavareDTO> getRaavareList() throws DALException {
 		List<RaavareDTO> list = new ArrayList<RaavareDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM raavare");
+		ResultSet rs = Connector.doQuery("SELECT * FROM raavare;");
 		try
 		{
 			while (rs.next()) 
@@ -43,14 +43,14 @@ public class MySQLRaavareDAO implements RaavareDAO{
 	@Override
 	public void createRaavare(RaavareDTO raavare) throws DALException {
 		Connector.doUpdate("INSERT INTO raavare(raavare_id, raavare_navn) VALUES " +
-		"(" + raavare.getRaavareId() + ", " + raavare.getRaavareNavn() + ")");
+		"(" + raavare.getRaavareId() + ", " + raavare.getRaavareNavn() + ");");
 		
 	}
 
 	@Override
 	public void updateRaavare(RaavareDTO raavare) throws DALException {
 			Connector.doUpdate("UPDATE raavare SET raavare_navn = '" 
-			+ raavare.getRaavareNavn() + "' WHERE raavare_id = " + raavare.getRaavareId() + ")");
+			+ raavare.getRaavareNavn() + "' WHERE raavare_id = " + raavare.getRaavareId() + ");");
 		
 	}
 
