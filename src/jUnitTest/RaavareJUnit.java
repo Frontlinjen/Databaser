@@ -1,5 +1,11 @@
 package jUnitTest;
 
-public class RaavareJUnit {
+import org.junit.Test;
 
+public class RaavareJUnit {
+	
+	@Test
+	public void testGetRaavare(){
+		
+	}
 }
