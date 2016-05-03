@@ -1,12 +1,12 @@
 package dto01917;
 
-public class RaavareBatchDTO
+public class LeverandoerDTO
 {
 	int raavareId;             // i omraadet 1-99999999
 	String leverandoerNavn;
 	double maengde;             // kan vaere negativ 
 
-	public RaavareBatchDTO(int raavareId, String leverandoerNavn, double maengde)
+	public LeverandoerDTO(int raavareId, String leverandoerNavn, double maengde)
 	{
 		this.raavareId = raavareId;
 		this.leverandoerNavn = leverandoerNavn;

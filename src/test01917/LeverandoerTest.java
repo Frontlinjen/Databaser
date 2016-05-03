@@ -3,11 +3,11 @@ package test01917;
 import java.sql.SQLException;
 
 import connector01917.Connector;
-import daoimpl01917.MySQLRaavareBatchDAO;
+import daoimpl01917.MySQLLeverandoerDAO;
 import daointerfaces01917.DALException;
-import dto01917.RaavareBatchDTO;
+import dto01917.LeverandoerDTO;
 
-public class RaavareBatchTest {
+public class LeverandoerTest {
 
 	public static void main(String[] args) {
 		try { 
@@ -29,28 +29,28 @@ public class RaavareBatchTest {
 		}
 		
 		System.out.println("RaavareBatch med:");
-		MySQLRaavareBatchDAO rab = new MySQLRaavareBatchDAO();
+		MySQLLeverandoerDAO lev = new MySQLLeverandoerDAO();
 		try { 
-				System.out.println(rab.getRaavareBatch(2, "Franz")); 
+				System.out.println(lev.getLeverandoer(2, "Franz")); 
 			}
 		catch (DALException e) { 
 				System.out.println(e.getMessage()); 
 			}
-		System.out.println("Indsaettelse af nyt RaavareBatch med rvId = 1, leverandoer = Franz, maengde = 200");
-		RaavareBatchDTO rabDTO = new RaavareBatchDTO(1, "Franz", 200.5);
+		System.out.println("Indsaettelse af ny Leverandoer med rvId = 1, leverandoer = Franz, maengde = 200");
+		LeverandoerDTO levDTO = new LeverandoerDTO(1, "Franz", 200.5);
 		try { 
-			rab.createRaavareBatch(rabDTO); 
+			lev.createLeverandoer(levDTO); 
 			}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
 			}
 		
-		System.out.println("Opdatering af rvID, maengde og leverandoer paa test RaavareBatch");
-		rabDTO.setRaavareId(2);
-		rabDTO.setMaengde(300);
-		rabDTO.setLeverandoerNavn("Knoor");
+		System.out.println("Opdatering af rvID, maengde og leverandoer paa test Leverandoer");
+		levDTO.setRaavareId(2);
+		levDTO.setMaengde(300);
+		levDTO.setLeverandoerNavn("Knoor");
 		try { 
-			rab.updateRaavareBatch(rabDTO); 
+			lev.updateLeverandoer(levDTO); 
 			}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
@@ -58,7 +58,7 @@ public class RaavareBatchTest {
 		
 		System.out.println("Alle RaavareBatch paa en liste:");
 		try { 
-			System.out.println(rab.getRaavareBatchList()); 
+			System.out.println(lev.getLeverandoerList()); 
 			}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
