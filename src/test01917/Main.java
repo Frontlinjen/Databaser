@@ -55,10 +55,12 @@ public class Main {
 			}
 
 		System.out.println("\nOpdatering af initialer for ansatte nummer 5");
+		AnsatDTO ansDTO5 = new AnsatDTO(ans.getAnsat("5"));
+		System.out.println(ans.getAnsat("5"));
+		ansDTO5.setIni("klmw");
+		ans.updateAnsat(ansDTO5);
 		System.out.println(ans.getAnsat("5"));
 		
-		ans.getAnsat("5").setIni("DoJu");
-		System.out.println(ans.getAnsat("5"));
 
 
 		System.out.println("\nAlle ansatte:");
