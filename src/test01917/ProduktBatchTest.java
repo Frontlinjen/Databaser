@@ -18,10 +18,35 @@ public class ProduktBatchTest {
 	
 		System.out.println("Produktbatch nummer 3:");
 		MySQLProduktbatch pb = new MySQLProduktbatch();
-		try { System.out.println(pb.getProduktBatchList()); }
+		try { System.out.println(pb.getProduktBatch(3)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 	
-		System.out.println("Indsaettelse af ny produktbatch med id =  1");
+		System.out.println("Indsaettelse af ny produktbatch med id =  1:");
 		ProduktBatchDTO pbDTO = new ProduktBatchDTO(5 , 3 , 1);	
+		try {
+			System.out.println(pb.getProduktBatch(1));
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Opdatering af produktbatch med id = 1:");
+		pbDTO.setStatus(1);
+		try{
+			pb.updateProduktBatch(pbDTO);
+			System.out.println(pb.getProduktBatch(1));
+		}
+		catch(DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();	
+		}
+		
+		System.out.println("Liste med alle elementer i ProduktBatch:");
+		try{
+			pb.getProduktBatchList();
+		}
+		catch(DALException e){
+			e.printStackTrace();
+		}
 	}
 }
