@@ -29,7 +29,7 @@ public class ProduktBatchKompTest {
 			e.printStackTrace(); 
 		}
 		
-		System.out.println("ProduktBatchKomponent med pb_id = 4 og rb_id = 5:");
+		System.out.println("ProduktBatchKomponent med pb_id = 4 og raavare_id = 5:");
 		MySQLProduktBatchKomp pbk = new MySQLProduktBatchKomp();
 		try { 
 			System.out.println(pbk.getProduktBatchKomp(4, 5)); 
@@ -39,7 +39,7 @@ public class ProduktBatchKompTest {
 		}
 		
 		System.out.println("Indsaettelse af nyt produktBatchKomponent med pbId = 4, raavareId = 2, tara = 0.5, netto = 10.1, cpr = 8549003489:");
-		ProduktBatchKompDTO pbkDTO = new ProduktBatchKompDTO(4, 2, 0.5, 10.1, "8549003489");
+		ProduktBatchKompDTO pbkDTO = new ProduktBatchKompDTO(4, 2, 0.5, 10.1, "909909009");
 		try { 
 			pbk.createProduktBatchKomp(pbkDTO); 
 			}
@@ -47,10 +47,10 @@ public class ProduktBatchKompTest {
 			System.out.println(e.getMessage()); 
 			}
 		
-		System.out.println("Opdatering af tara, netto og cpr på test produktBatchKomponentet");
+		System.out.println("Opdatering af tara, netto og cpr pï¿½ test produktBatchKomponentet");
 		pbkDTO.setTara(5.0);
-		pbkDTO.setNetto(5);
-		pbkDTO.setCpr("8912873894");
+		pbkDTO.setNetto(5.5);
+		pbkDTO.setCpr("707707007");
 		try { 
 			pbk.updateProduktBatchKomp(pbkDTO); 
 			}
@@ -58,7 +58,7 @@ public class ProduktBatchKompTest {
 			System.out.println(e.getMessage()); 
 			}
 		
-		System.out.println("Alle produktBatchKomponenter på en liste:");
+		System.out.println("Alle produktBatchKomponenter pï¿½ en liste:");
 		try { 
 			System.out.println(pbk.getProduktBatchKompList()); 
 			}
