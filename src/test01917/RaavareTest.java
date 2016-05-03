@@ -37,7 +37,7 @@ public class RaavareTest {
 				System.out.println(e.getMessage()); 
 		}
 		
-		System.out.println("Indsaettelse af ny raavare med raavare_id = 6 og raavare_navn = Oregano:");
+		System.out.println("Indsaettelse af ny raavare med raavare_id = 6 og raavare_navn = Oregano");
 		RaavareDTO ravDTO = new RaavareDTO(6, "Oregano");
 		try { 
 			rav.createRaavare(ravDTO); 
@@ -46,8 +46,8 @@ public class RaavareTest {
 			System.out.println(e.getMessage()); 
 			}
 		
-		System.out.println("Opdatering af navn på raavaren med raavare_id = 6");
-		ravDTO.setRaavareNavn("ananas(klamt og forkert)");
+		System.out.println("Opdatering af navn pï¿½ raavaren med raavare_id = 6");
+		ravDTO.setRaavareNavn("ananas");
 		try { 
 			rav.updateRaavare(ravDTO);
 			}
@@ -55,7 +55,7 @@ public class RaavareTest {
 			System.out.println(e.getMessage()); 
 			}
 		
-		System.out.println("Alle raavarer på en liste:");
+		System.out.println("Alle raavarer pï¿½ en liste:");
 		try { 
 			System.out.println(rav.getRaavareList()); 
 			}

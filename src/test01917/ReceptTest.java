@@ -36,7 +36,7 @@ public class ReceptTest {
 				System.out.println(e.getMessage()); 
 			}
 
-		System.out.println("oprettelse af recept med navn kage og id'et 5");
+		System.out.println("Oprettelse af recept med navn kage og id'et 5");
 		ReceptDTO ansDTO = new ReceptDTO(5, "kage");
 		try { 
 			ans.createRecept(ansDTO); 
