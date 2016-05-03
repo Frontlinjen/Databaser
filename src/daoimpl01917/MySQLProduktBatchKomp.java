@@ -16,10 +16,10 @@ public class MySQLProduktBatchKomp implements ProduktBatchKompDAO {
 
 	@Override
 	public ProduktBatchKompDTO getProduktBatchKomp(int pbId, int rbId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM produktbatchkomponent WHERE pb_id = " + pbId + ";");
+		ResultSet rs = Connector.doQuery("SELECT * FROM produktbatchkomponent WHERE pb_id = " + pbId + " AND raavare_id = " + rbId + ";");
 	    try {
-	    	if (!rs.first()) throw new DALException("Produktbatchkomponenten med pb_id'et " + pbId + " findes ikke");
-	    	return new ProduktBatchKompDTO (rs.getInt("pb_id"), rs.getInt("raavareId"), rs.getDouble("tara"), 
+	    	if (!rs.first()) throw new DALException("Produktbatchkomponenten med pb_id'et " + pbId + " og raavare_id " + rbId + " findes ikke");
+	    	return new ProduktBatchKompDTO (rs.getInt("pb_id"), rs.getInt("raavare_Id"), rs.getDouble("tara"), 
 	    			   rs.getDouble("netto"), rs.getString("cpr"));
 	    }
 	    catch (SQLException e) {throw new DALException(e); }
@@ -33,7 +33,7 @@ public class MySQLProduktBatchKomp implements ProduktBatchKompDAO {
 		{
 			while (rs.next()) 
 			{
-				list.add(new ProduktBatchKompDTO(rs.getInt("pb_id"), rs.getInt("raavareId"), 
+				list.add(new ProduktBatchKompDTO(rs.getInt("pb_id"), rs.getInt("raavare_Id"), 
 						 rs.getDouble("tara"), rs.getDouble("netto"), rs.getString("cpr")));
 			}
 		}
@@ -44,8 +44,8 @@ public class MySQLProduktBatchKomp implements ProduktBatchKompDAO {
 	@Override
 	public void createProduktBatchKomp(ProduktBatchKompDTO pbkomp) throws DALException {
 		Connector.doUpdate(
-				"INSERT INTO produktbatchkomponent(pb_id, raavareId, tara, netto, cpr) VALUES " +
-				"(" + pbkomp.getPbId() + ", '" + pbkomp.getRaavareId() + "', '" + pbkomp.getTara() + "', '" 
+				"INSERT INTO produktbatchkomponent(pb_id, raavare_Id, tara, netto, cpr) VALUES ("
+				+ pbkomp.getPbId() + ", " + pbkomp.getRaavareId() + ", '" + pbkomp.getTara() + "', '" 
 				+ pbkomp.getNetto()	+ "', '" + pbkomp.getCpr() + "');"
 			);
 	}
@@ -53,9 +53,9 @@ public class MySQLProduktBatchKomp implements ProduktBatchKompDAO {
 	@Override
 	public void updateProduktBatchKomp(ProduktBatchKompDTO pbkomp) throws DALException {
 		Connector.doUpdate(
-				"UPDATE produktbatchkomponent SET pb_id = '" + pbkomp.getPbId() + "', raavareId = '" 
-				+ pbkomp.getRaavareId() + "', tara = '" + pbkomp.getTara() + "', netto = '" + pbkomp.getNetto() +
-				"', cpr = '" + pbkomp.getCpr() + ";"
+				"UPDATE produktbatchkomponent SET tara = '" + pbkomp.getTara() + "', netto = '" + pbkomp.getNetto() +
+				"', cpr = '" + pbkomp.getCpr() + "' WHERE pb_id = " + pbkomp.getPbId() + " AND raavare_Id = " 
+						+ pbkomp.getRaavareId() + ";"
 				);		
 	}
 
