@@ -58,6 +58,7 @@ public class ReceptTest {
 		ansDTO.setReceptNavn("lagkage");
 		try { 
 			ans.updateRecept(ansDTO); 
+			System.out.println(ans.getRecept(5));
 			}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
