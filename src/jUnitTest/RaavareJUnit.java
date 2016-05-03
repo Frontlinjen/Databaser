@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import connector01917.Connector;
-import dto01917.RaavareDTO;
 import daointerfaces01917.DALException;
+import dto01917.RaavareDTO;
 import daoimpl01917.MySQLRaavareDAO;
 
 public class RaavareJUnit {
