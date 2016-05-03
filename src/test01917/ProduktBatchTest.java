@@ -31,7 +31,7 @@ public class ProduktBatchTest {
 		}
 		
 		System.out.println("Opdatering af produktbatch med id = 1:");
-		pbDTO.setStatus(1);
+		pbDTO.setStatus(2);
 		try{
 			pb.updateProduktBatch(pbDTO);
 			System.out.println(pb.getProduktBatch(1));
@@ -43,7 +43,7 @@ public class ProduktBatchTest {
 		
 		System.out.println("Liste med alle elementer i ProduktBatch:");
 		try{
-			pb.getProduktBatchList();
+			System.out.println(pb.getProduktBatchList());
 		}
 		catch(DALException e){
 			e.printStackTrace();
