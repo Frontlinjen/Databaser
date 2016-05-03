@@ -51,7 +51,6 @@ public class MySQLRaavareDAO implements RaavareDAO{
 	public void updateRaavare(RaavareDTO raavare) throws DALException {
 			Connector.doUpdate("UPDATE raavare SET raavare_navn = '" 
 			+ raavare.getRaavareNavn() + "' WHERE raavare_id = " + raavare.getRaavareId() + ";");
-		
 	}
 
 }

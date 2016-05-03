@@ -15,11 +15,11 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
 
 	@Override
 	public RaavareBatchDTO getRaavareBatch(int rvId, String leverandoer) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer WHERE raavare_id = " + rvId + " AND leverandoer_navn = " + leverandoer + ";");
+		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer WHERE raavare_id = " + rvId + " AND leverandoer_navn = '" + leverandoer + "';");
 		
 		try{
 			if(!rs.first()) 
-				throw new DALException("Raavaren " + rvId + " findes ikke fra leverandøren: " + leverandoer);
+				throw new DALException("Raavaren " + rvId + " findes ikke fra leverandï¿½ren: '" + leverandoer + "'");
 			return new RaavareBatchDTO(rs.getInt("raavare_id"), rs.getString("leverandoer_navn"), rs.getDouble("maengde"));
 		}
 		catch(SQLException e) 
@@ -59,17 +59,16 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
 
 	@Override
 	public void createRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
-		int updateCount = Connector.doUpdate(String.format("INSERT INTO leverandoer(raavare_id, leverandoer_navn, maengde) values(%i, %s, %d", raavarebatch.getRaavareId(),  raavarebatch.getLeverandoerNavn(), raavarebatch.getMaengde() + ";"));
+		int updateCount = Connector.doUpdate(String.format("INSERT INTO leverandoer(raavare_id, leverandoer_navn, maengde) VALUES(" + raavarebatch.getRaavareId() + ", '" +
+		raavarebatch.getLeverandoerNavn() + "', " + raavarebatch.getMaengde() + ");"));
 		if(updateCount==0)
 			throw new DALException("Failed to add new raavarebatch!");
 	}
 
 	@Override
 	public void updateRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
-		int updateCount = Connector.doUpdate(String.format("UPDATE leverandoer SET (maengde=%d) WHERE raavare_id=raavare_id=%i AND leverandoer_navm=%s", raavarebatch.getMaengde(), raavarebatch.getRaavareId(),  raavarebatch.getLeverandoerNavn() + ";"));
-		if(updateCount==0)
-			throw new DALException("Failed to update raavarebatch!");
-		
+		int updateCount = Connector.doUpdate(String.format("UPDATE leverandoer SET maengde = " + raavarebatch.getMaengde() +
+		"WHERE raavare_id = " + raavarebatch.getRaavareId() + " AND leverandoer_navn = '" + raavarebatch.getLeverandoerNavn() + "';"));
 	}
 
 	

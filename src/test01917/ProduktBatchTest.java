@@ -16,29 +16,32 @@ public class ProduktBatchTest {
 		catch (ClassNotFoundException e) { e.printStackTrace(); }
 		catch (SQLException e) { e.printStackTrace(); }
 	
-		System.out.println("Produktbatch nummer 3:");
+		System.out.println("Produktbatch med pb_id 3:");
 		MySQLProduktbatch pb = new MySQLProduktbatch();
-		try { System.out.println(pb.getProduktBatch(3)); }
-		catch (DALException e) { System.out.println(e.getMessage()); }
+		try { 
+			System.out.println(pb.getProduktBatch(3)); 
+		}
+		catch (DALException e) 
+		{ 
+			System.out.println(e.getMessage()); 
+		}
 	
-		System.out.println("Indsaettelse af ny produktbatch med id =  1:");
+		System.out.println("Indsaettelse af ny produktbatch med id =  5:");
 		ProduktBatchDTO pbDTO = new ProduktBatchDTO(5 , 3 , 1);	
 		try {
-			System.out.println(pb.getProduktBatch(1));
+			pb.createProduktBatch(pbDTO);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		
-		System.out.println("Opdatering af produktbatch med id = 1:");
+		System.out.println("Opdatering af produktbatch med id = 5:");
 		pbDTO.setStatus(2);
 		try{
 			pb.updateProduktBatch(pbDTO);
-			System.out.println(pb.getProduktBatch(1));
 		}
 		catch(DALException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();	
+			System.out.println(e.getMessage());	
 		}
 		
 		System.out.println("Liste med alle elementer i ProduktBatch:");

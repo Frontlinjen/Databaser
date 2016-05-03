@@ -43,7 +43,7 @@ public class MySQLProduktbatch implements ProduktBatchDAO {
 	public void createProduktBatch(ProduktBatchDTO ans) throws DALException {
 		Connector.doUpdate(
 				"INSERT INTO produktbatch(pb_id, status, recept_id) VALUES " +
-				"(" + ans.getPbId() + ", '" + ans.getStatus() + "', '" + ans.getReceptId() + "');"
+				"(" + ans.getPbId() + ", " + ans.getStatus() + ", " + ans.getReceptId() + ");"
 			);
 		
 	}
