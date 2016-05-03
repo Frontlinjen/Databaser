@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import connector01917.Connector;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DALException {
 		try { 
 				new Connector(); 
 			} 
@@ -27,17 +27,17 @@ public class Main {
 		catch (SQLException e) {
 			e.printStackTrace(); 
 			}
-		System.out.println("Ansat nummer 3:");
+		System.out.println("Ansat nummer 1:");
 		MySQLAnsatDAO ans = new MySQLAnsatDAO();
 		try { 
-				System.out.println(ans.getAnsat("0909909009")); 
+				System.out.println(ans.getAnsat("1") + "\n" ); 
 			}
 		catch (DALException e) { 
 				System.out.println(e.getMessage()); 
 			}
 
-		System.out.println("Indsaettelse af ny ansat med titel =  1");
-		AnsatDTO ansDTO = new AnsatDTO("0000000001","Don Juan","DJ","iloveyou",1);
+		System.out.println("Indsaettelse af ny ansat med CPR-nummer =  0000000002");
+		AnsatDTO ansDTO = new AnsatDTO("0000000002","Don Juan","DJ","iloveyou",1);
 		try { 
 			ans.createAnsat(ansDTO); 
 			}
@@ -45,47 +45,30 @@ public class Main {
 			System.out.println(e.getMessage()); 
 			}	
 
-		System.out.println("Ansat nummer 4:");
+		System.out.println("\nAnsat nummer 2:");
 		try { 
-			System.out.println(ans.getAnsat("0000000001")); 
+			System.out.println(ans.getAnsat("2")); 
 			}
 		catch (DALException e) 
 		{ 
 			System.out.println(e.getMessage()); 
 			}
 
-		System.out.println("Opdatering af initialer for ansatte nummer 4");
-		ansDTO.setIni("DoJu");
-		try { 
-			ans.updateAnsat(ansDTO); 
-			}
-		catch (DALException e) { 
-			System.out.println(e.getMessage()); 
-			}
+		System.out.println("\nOpdatering af initialer for ansatte nummer 5");
+		AnsatDTO ansDTO5 = new AnsatDTO(ans.getAnsat("5"));
+		System.out.println(ans.getAnsat("5"));
+		ansDTO5.setIni("klmw");
+		ans.updateAnsat(ansDTO5);
+		System.out.println(ans.getAnsat("5"));
+		
 
-		System.out.println("Ansat nummer 4:");
-		try { 
-			System.out.println(ans.getAnsat("0000000001")); 
-			}
-		catch (DALException e) { 
-			System.out.println(e.getMessage()); 
-			}
 
-		System.out.println("Alle ansatte:");
+		System.out.println("\nAlle ansatte:");
 		try { 
 			System.out.println(ans.getAnsatList()); 
 			}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
 			}
-
-		System.out.println("Ansat nummer 1:");
-		try { 
-			System.out.println(ans.getAnsat("0000000001")); 
-			}
-		catch (DALException e) { 
-			System.out.println(e.getMessage()); 
-			}		
-
 	}
 }
