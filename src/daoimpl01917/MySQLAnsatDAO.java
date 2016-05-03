@@ -23,7 +23,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 	
 	public void createAnsat(AnsatDTO ans) throws DALException {		
 			Connector.doUpdate(
-				"INSERT INTO operatoer(cpr, opr_navn, ini, password, titel) VALUES " +
+				"INSERT INTO ansat(cpr, opr_navn, ini, password, titel) VALUES " +
 				"(" + ans.getCpr() + ", '" + ans.getOprNavn() + "', '" + ans.getIni() + "', '" + 
 				ans.getPassword() + "', '" + ans.getTitel() + "');"
 			);
@@ -31,7 +31,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 	
 	public void updateAnsat(AnsatDTO ans) throws DALException {
 		Connector.doUpdate(
-				"UPDATE operatoer SET  opr_navn = '" + ans.getOprNavn() + "', ini =  '" + ans.getIni() + 
+				"UPDATE ansat SET  opr_navn = '" + ans.getOprNavn() + "', ini =  '" + ans.getIni() + 
 				"', password = '" + ans.getPassword() + "', titel = '" + ans.getTitel() + "' WHERE cpr = " +
 				ans.getCpr() + ";"
 		);
@@ -39,7 +39,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 	
 	public List<AnsatDTO> getAnsatList() throws DALException {
 		List<AnsatDTO> list = new ArrayList<AnsatDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer;");
+		ResultSet rs = Connector.doQuery("SELECT * FROM ansat;");
 		try
 		{
 			while (rs.next()) 

@@ -22,10 +22,6 @@ public class ProduktBatchTest {
 		catch (DALException e) { System.out.println(e.getMessage()); }
 	
 		System.out.println("Indsaettelse af ny produktbatch med id =  1");
-		ProduktBatchDTO pbDTO = new ProduktBatchDTO(5 , 3 , 1);
-		try {
-			
-		}
-		catch (DALException e) { System.out.println(e.getMessage()); }	
+		ProduktBatchDTO pbDTO = new ProduktBatchDTO(5 , 3 , 1);	
 	}
 }
