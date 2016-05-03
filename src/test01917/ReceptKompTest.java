@@ -47,10 +47,11 @@ public class ReceptKompTest {
 				System.out.println(e.getMessage()); 
 			}
 		
-		System.out.println("Indsaettelse af ny receptkomponent med receptId = x, raavareId = y: ");
+		System.out.println("Indsaettelse af ny receptkomponent med receptId = 1, raavareId = 4: ");
 		ReceptKompDTO rekDTO = new ReceptKompDTO(1, 4, 3, 0.1);
 		try { 
 			rek.createReceptKomp(rekDTO); 
+			System.out.println(rek.getReceptKomp(1, 4)); 
 			}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
@@ -60,6 +61,7 @@ public class ReceptKompTest {
 		rekDTO.setNomNetto(5);
 		try { 
 			rek.updateReceptKomp(rekDTO);
+			System.out.println(rek.getReceptKomp(1, 1)); 
 			}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
