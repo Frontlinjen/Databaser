@@ -79,9 +79,9 @@ public class Main {
 			System.out.println(e.getMessage()); 
 			}
 
-		System.out.println("Ansat nummer 5:");
+		System.out.println("Ansat nummer 1:");
 		try { 
-			System.out.println(ans.getAnsat("0000000005")); 
+			System.out.println(ans.getAnsat("0000000001")); 
 			}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
