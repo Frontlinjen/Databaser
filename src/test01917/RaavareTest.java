@@ -40,7 +40,8 @@ public class RaavareTest {
 		System.out.println("Indsaettelse af ny raavare med raavare_id = 6 og raavare_navn = Oregano");
 		RaavareDTO ravDTO = new RaavareDTO(6, "Oregano");
 		try { 
-			rav.createRaavare(ravDTO); 
+			rav.createRaavare(ravDTO);
+			System.out.println(rav.getRaavare(6));
 			}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
@@ -50,6 +51,7 @@ public class RaavareTest {
 		ravDTO.setRaavareNavn("ananas");
 		try { 
 			rav.updateRaavare(ravDTO);
+			System.out.println(rav.getRaavare(6));
 			}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
