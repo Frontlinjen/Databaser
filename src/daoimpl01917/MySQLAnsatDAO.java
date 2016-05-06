@@ -25,7 +25,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 			Connector.doUpdate(
 				"INSERT INTO ansat(cpr, opr_navn, ini, password, titel) VALUES " +
 				"(" + ans.getCpr() + ", '" + ans.getOprNavn() + "', '" + ans.getIni() + "', '" + 
-				ans.getPassword() + "', '" + ans.getTitel() + "');"
+				ans.getPassword() + "', " + ans.getTitel() + ");"
 			);
 	}
 	

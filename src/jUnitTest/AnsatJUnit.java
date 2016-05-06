@@ -46,13 +46,16 @@ public class AnsatJUnit {
 	
 	@Test
 	public void testCreateAnsat()throws DALException{
-		AnsatDTO ansa = new AnsatDTO("1102990101", "Bob", "Bo", "fisken",0);
+		AnsatDTO ans = new AnsatDTO("1102990181", "Bob", "Bo", "fisken",0);
 		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
-		ansDAO.createAnsat(ansa);
+		ansDAO.createAnsat(ans);
 		assertTrue
-			("Succes the employee with the CPR 1102990101 is Bob ", 
-			ansDAO.getAnsat("1102990101").getOprNavn().equals("Bob") &&
-			ansDAO.getAnsat("1102990101").getIni().equals("Bo"));
+			("Succes creating the employee with the CPR: 1102990181, name: Bob, Initials: Bo, Password: fisken ", 
+			ansDAO.getAnsat("1102990181").getOprNavn().equals("Bob") &&
+			ansDAO.getAnsat("1102990181").getIni().equals("Bo") &&
+			ansDAO.getAnsat("1102990181").getCpr().equals("1102990181") &&
+			ansDAO.getAnsat("1102990181").getTitel() == 0 &&
+			ansDAO.getAnsat("1102990181").getPassword().equals("fisken"));
 	}
 	
 	@Test
@@ -67,6 +70,10 @@ public class AnsatJUnit {
 			ansDAO.getAnsat("1102990101").getPassword().equals("fisken") &&
 			ansDAO.getAnsat("1102990101").getTitel()==0);
 	}
+
+	@Test 
+	public void getAnsatList() throws DALException{
 		
+	}
 	
 }
