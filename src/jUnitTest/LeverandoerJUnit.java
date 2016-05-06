@@ -10,7 +10,7 @@ import org.junit.Test;
 import connector01917.Connector;
 import daointerfaces01917.DALException;
 
-public class ProduktbatchJUnit {
+public class LeverandoerJUnit {
 	
 	@Before
 	 public void initialize() {
@@ -30,24 +30,29 @@ public class ProduktbatchJUnit {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Test
-	public void testGetProduktBatch() {
+	public void testGetLeverandoer() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetProduktBatchList() {
+	public void testGetLeverandoerList() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testCreateProduktBatch() {
+	public void testPopulateList() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testUpdateProduktBatch() {
+	public void testCreateLeverandoer() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdateLeverandoer() {
 		fail("Not yet implemented");
 	}
 

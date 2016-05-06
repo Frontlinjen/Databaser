@@ -70,8 +70,3 @@ public class AnsatJUnit {
 		
 	
 }
-//this.cpr = ans.getCpr();
-//this.oprNavn = ans.getOprNavn();
-//this.ini = ans.getIni();
-//this.password = ans.getPassword();
-//this.titel = ans.getTitel();
