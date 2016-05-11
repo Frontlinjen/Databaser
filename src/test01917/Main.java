@@ -27,10 +27,10 @@ public class Main {
 		catch (SQLException e) {
 			e.printStackTrace(); 
 			}
-		System.out.println("Ansat nummer 1:");
+		System.out.println("Ansat nummer 0707707007:");
 		MySQLAnsatDAO ans = new MySQLAnsatDAO();
 		try { 
-				System.out.println(ans.getAnsat("1") + "\n" ); 
+				System.out.println(ans.getAnsat("0707707007") + "\n" ); 
 			}
 		catch (DALException e) { 
 				System.out.println(e.getMessage()); 
@@ -45,21 +45,21 @@ public class Main {
 			System.out.println(e.getMessage()); 
 			}	
 
-		System.out.println("\nAnsat nummer 2:");
+		System.out.println("\nAnsat nummer 0000000002:");
 		try { 
-			System.out.println(ans.getAnsat("2")); 
+			System.out.println(ans.getAnsat("0000000002")); 
 			}
 		catch (DALException e) 
 		{ 
 			System.out.println(e.getMessage()); 
 			}
 
-		System.out.println("\nOpdatering af initialer for ansatte nummer 5");
-		AnsatDTO ansDTO5 = new AnsatDTO(ans.getAnsat("5"));
-		System.out.println(ans.getAnsat("5"));
+		System.out.println("\nOpdatering af initialer for ansatte nummer 0000000002");
+		AnsatDTO ansDTO5 = new AnsatDTO(ans.getAnsat("0000000002"));
+		System.out.println(ans.getAnsat("0000000002"));
 		ansDTO5.setIni("klmw");
 		ans.updateAnsat(ansDTO5);
-		System.out.println(ans.getAnsat("5"));
+		System.out.println(ans.getAnsat("0000000002"));
 		
 
 
