@@ -64,21 +64,11 @@ END \\
 DELIMITER ;
 */
 
-DROP TRIGGER IF EXISTS verifyAnsatUpdate
-DELIMITER \\
-create trigger verifyAnsatUpdate
-BEFORE UPDATE
-	ON ansat FOR EACH ROW
-BEGIN
-	IF NEW.titel NOT BETWEEN 0 AND 3 THEN
-		SIGNAL SQLSTATE '50000' SET MESSAGE_TEXT = 'Titel er ugyldig';
-    ELSEIF CHAR_LENGTH(NEW.ini) < 2 THEN
-		SIGNAL SQLSTATE '50000' SET MESSAGE_TEXT = 'INI er for kort';
-	END IF;
-END \\
-DELIMITER ;
-
-
+DROP TRIGGER IF EXISTS verifyCPRInsert;
+DROP TRIGGER IF EXISTS verifyINIInsert;
+DROP TRIGGER IF EXISTS verifyINIUpdate;
+DROP TRIGGER IF EXISTS verifyTitelUpdate;
+DROP TRIGGER IF EXISTS verifyTitelInsert;
 DROP TRIGGER IF EXISTS verifyAnsatInsert;
 DELIMITER \\
 create trigger verifyAnsatInsert
@@ -97,3 +87,17 @@ BEGIN
 END \\
 DELIMITER ;
 
+
+DROP TRIGGER IF EXISTS verifyAnsatUpdate
+DELIMITER \\
+create trigger verifyAnsatUpdate
+BEFORE UPDATE
+	ON ansat FOR EACH ROW
+BEGIN
+	IF NEW.titel NOT BETWEEN 0 AND 3 THEN
+		SIGNAL SQLSTATE '50000' SET MESSAGE_TEXT = 'Titel er ugyldig';
+    ELSEIF CHAR_LENGTH(NEW.ini) < 2 THEN
+		SIGNAL SQLSTATE '50000' SET MESSAGE_TEXT = 'INI er for kort';
+	END IF;
+END \\
+DELIMITER ;
