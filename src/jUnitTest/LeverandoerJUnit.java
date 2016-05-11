@@ -35,14 +35,14 @@ public class LeverandoerJUnit {
 	
 	@Test
 	public void testGetLeverandoer() throws DALException {
-		LeverandoerDTO lev = new LeverandoerDTO(8,"Kikis",1.0);
+		LeverandoerDTO lev = new LeverandoerDTO(20,"Kakis",1.0);
 		MySQLLeverandoerDAO levDAO = new MySQLLeverandoerDAO();
 		levDAO.createLeverandoer(lev);
 		assertTrue(
-				"The leverandoer with rv_id is Kikis: ",
-				levDAO.getLeverandoer(8, "Kikis").getLeverandoerNavn().equals("Kikis") &&
-				levDAO.getLeverandoer(8, "Kikis").getRaavareId()==8 &&
-				levDAO.getLeverandoer(8, "Kikis").getMaengde()==1.0
+				"The leverandoer with rv_id is Kaks: ",
+				levDAO.getLeverandoer(20, "Kakis").getLeverandoerNavn().equals("Kakis") &&
+				levDAO.getLeverandoer(20, "Kakis").getRaavareId()==20 &&
+				levDAO.getLeverandoer(20, "Kakis").getMaengde()==1.0
 		);
 	}
 
@@ -57,28 +57,30 @@ public class LeverandoerJUnit {
 
 	@Test
 	public void testCreateLeverandoer() throws DALException {
-		LeverandoerDTO lev = new LeverandoerDTO(10,"Kikis",1.0);
+		LeverandoerDTO lev = new LeverandoerDTO(14,"Kokis",1.0);
 		MySQLLeverandoerDAO levDAO = new MySQLLeverandoerDAO();
 		levDAO.createLeverandoer(lev);
 		assertTrue(
-				"The leverandoer with rv_id is Kikis: ",
-				levDAO.getLeverandoer(10, "Kikis").getLeverandoerNavn().equals("Kikis") &&
-				levDAO.getLeverandoer(10, "Kikis").getRaavareId()==10 &&
-				levDAO.getLeverandoer(10, "Kikis").getMaengde()==1.0
+				"The leverandoer with rv_id is Kokis: ",
+				levDAO.getLeverandoer(14, "Kokis").getLeverandoerNavn().equals("Kokis") &&
+				levDAO.getLeverandoer(14, "Kokis").getRaavareId()==14 &&
+				levDAO.getLeverandoer(14, "Kokis").getMaengde()==1.0
 		);
 		
 	}
 
 	@Test
 	public void testUpdateLeverandoer() throws DALException {
-		LeverandoerDTO lev = new LeverandoerDTO(5,"Kikis",5.0);
+		LeverandoerDTO lev = new LeverandoerDTO(16,"Kukus",8.0);
+		LeverandoerDTO lev1 = new LeverandoerDTO(16,"Kukus",9.0);
 		MySQLLeverandoerDAO levDAO = new MySQLLeverandoerDAO();
-		levDAO.updateLeverandoer(lev);
+		levDAO.createLeverandoer(lev);
+		levDAO.updateLeverandoer(lev1);
 		assertTrue(
 				"The leverandoer Kikis, has been updated.",
-				levDAO.getLeverandoer(5, "Kikis").getLeverandoerNavn().equals("Kikis") &&
-				levDAO.getLeverandoer(5, "Kikis").getRaavareId()==5 &&
-				levDAO.getLeverandoer(5, "Kikis").getMaengde()==5.0
+				levDAO.getLeverandoer(16, "Kukus").getLeverandoerNavn().equals("Kukus") &&
+				levDAO.getLeverandoer(16, "Kukus").getRaavareId()==16 &&
+				levDAO.getLeverandoer(16, "Kukus").getMaengde()==9.0
 		);
 		
 	}
