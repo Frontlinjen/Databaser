@@ -40,7 +40,7 @@ DELIMITER ;
 
 DROP TRIGGER IF EXISTS verifyTitelUpdate;
 DELIMITER \\
-create trigger verifyTitel
+create trigger verifyTitelUpdate
 BEFORE UPDATE
 	ON ansat FOR EACH ROW
 BEGIN 
@@ -53,7 +53,7 @@ DELIMITER ;
 
 DROP TRIGGER IF EXISTS verifyTitelInsert;
 DELIMITER \\
-create trigger verifyTitel
+create trigger verifyTitelInsert
 BEFORE Insert
 	ON ansat FOR EACH ROW
 BEGIN 

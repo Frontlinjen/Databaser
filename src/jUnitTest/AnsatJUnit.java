@@ -35,45 +35,45 @@ public class AnsatJUnit {
 		}
 	}
 	
-	@Test //AnsatDTO
+	@Test 
 	public void testGetAnsat() throws DALException{
-		AnsatDTO ansat = new AnsatDTO("1102990105", "Bob", "Bo", "fisken", 0);
+		AnsatDTO ansat = new AnsatDTO("1102990109", "Bob", "Bo", "fisken", 0);
 		MySQLAnsatDAO ans = new MySQLAnsatDAO();
 		ans.createAnsat(ansat);
 		assertTrue
 			("Succesful retrievel of the employee: ", 
-					ans.getAnsat("1102990105").getOprNavn().equals("Bob") &&
-					ans.getAnsat("1102990105").getIni().equals("Bo") &&
-					ans.getAnsat("1102990105").getCpr().equals("1102990105") &&
-					ans.getAnsat("1102990105").getTitel() == 0 &&
-					ans.getAnsat("1102990105").getPassword().equals("fisken"));
+					ans.getAnsat("1102990109").getOprNavn().equals("Bob") &&
+					ans.getAnsat("1102990109").getIni().equals("Bo") &&
+					ans.getAnsat("1102990109").getCpr().equals("1102990109") &&
+					ans.getAnsat("1102990109").getTitel() == 0 &&
+					ans.getAnsat("1102990109").getPassword().equals("fisken"));
 	}
 	
 	@Test
 	public void testCreateAnsat()throws DALException{
 		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
-		AnsatDTO ans = new AnsatDTO("1102990182", "Bob", "Bo", "fisken",0);
+		AnsatDTO ans = new AnsatDTO("1102990185", "Bob", "Bo", "fisken",0);
 		ansDAO.createAnsat(ans);
 		assertTrue
-			("Succes creating the employee with the CPR: 1102990182, name: Bob, Initials: Bo, Password: fisken ", 
-			ansDAO.getAnsat("1102990182").getOprNavn().equals("Bob") &&
-			ansDAO.getAnsat("1102990182").getIni().equals("Bo") &&
-			ansDAO.getAnsat("1102990182").getCpr().equals("1102990182") &&
-			ansDAO.getAnsat("1102990182").getTitel() == 0 &&
-			ansDAO.getAnsat("1102990182").getPassword().equals("fisken"));
+			("Succes creating the employee with the CPR: 1102990185", 
+			ansDAO.getAnsat("1102990185").getOprNavn().equals("Bob") &&
+			ansDAO.getAnsat("1102990185").getIni().equals("Bo") &&
+			ansDAO.getAnsat("1102990185").getCpr().equals("1102990185") &&
+			ansDAO.getAnsat("1102990185").getTitel() == 0 &&
+			ansDAO.getAnsat("1102990185").getPassword().equals("fisken"));
 	}
 	
 	@Test
-	public void updateAnsat() throws DALException{
-	AnsatDTO ans = new AnsatDTO("1102990101", "Tim", "Ti", "Tims",1);
+	public void updateAnsat() throws DALException{	
+	AnsatDTO ans1 = new AnsatDTO("1102990185", "Tim", "Ti", "Tims",1);
 	MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
-	ansDAO.getAnsat("1102990101");
-	ansDAO.updateAnsat(ans);
-	assertFalse("Fail, the info are no longer applying to '1102990101' ", 
-			ansDAO.getAnsat("1102990101").getOprNavn().equals("Bob") &&
-			ansDAO.getAnsat("1102990101").getIni().equals("Bo") &&
-			ansDAO.getAnsat("1102990101").getPassword().equals("fisken") &&
-			ansDAO.getAnsat("1102990101").getTitel()==0);
+	ansDAO.getAnsat("1102990185");
+	ansDAO.updateAnsat(ans1);
+	assertFalse("Fail, the info are no longer applying to '1102990185' ", 
+			ansDAO.getAnsat("1102990185").getOprNavn().equals("Bob") &&
+			ansDAO.getAnsat("1102990185").getIni().equals("Bo") &&
+			ansDAO.getAnsat("1102990185").getPassword().equals("fisken") &&
+			ansDAO.getAnsat("1102990185").getTitel()==0);
 	}
 
 	@Test 
@@ -82,4 +82,61 @@ public class AnsatJUnit {
 		assertFalse("Fail, the list is not empty: ", ansatDAO.getAnsatList()==null);
 	}
 	
+	@Test
+	public void triggerTestVerifyPWShort() throws DALException{
+		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+		AnsatDTO ans = new AnsatDTO("11029901", "Bob", "Bo", "fisken",0);
+		ansDAO.createAnsat(ans);
+		fail("The employee couldn't be created due to too short CPR number.");
+		
+	}
+	
+	@Test
+	public void triggerTestVerifyPWLong() throws DALException{
+		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+		AnsatDTO ans = new AnsatDTO("11029901999", "Bob", "Bo", "fisken",0);
+		ansDAO.createAnsat(ans);
+		fail("The employee couldn't be created due to too long CPR number.");
+
+	}
+	
+	@Test
+	public void triggerTestInsertIni() throws DALException{
+		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+		AnsatDTO ans = new AnsatDTO("1102990101", "Bob", "B", "fisken",0);
+		ansDAO.createAnsat(ans);
+		fail("The initials are too short.");
+		
+	}
+	
+	@Test
+	public void triggerTestUpdateIni() throws DALException{
+		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+		AnsatDTO ans = new AnsatDTO("1102990111", "Bob", "Bo", "fisken",0);
+		ansDAO.createAnsat(ans);
+		AnsatDTO ans1 = new AnsatDTO("1102990111", "Bob", "B", "fisken",0);
+		ansDAO.createAnsat(ans1);
+		ansDAO.updateAnsat(ans1);
+		fail("Could not update. The initials are too short.");
+		
+	}
+	
+	@Test
+	public void triggerTestInsertTitel() throws DALException{
+		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+		AnsatDTO ans = new AnsatDTO("1102990111", "Bob", "Bo", "fisken",8);
+		ansDAO.createAnsat(ans);
+		fail("Could not create ansat. The Titel are not within the range of 0 and 3.");
+	}
+	
+	@Test
+	public void triggerTestInsertUpdate() throws DALException{
+		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+		AnsatDTO ans = new AnsatDTO("1102990112", "Bob", "Bo", "fisken",1);
+		ansDAO.createAnsat(ans);
+		AnsatDTO ans1 = new AnsatDTO("1102990112", "Bob", "Bo", "fisken",5);
+		ansDAO.createAnsat(ans1);
+		fail("Could not create ansat. The Titel are not within the range of 0 and 3.");
+		
+	}
 }
