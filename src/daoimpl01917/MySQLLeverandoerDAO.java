@@ -54,15 +54,15 @@ public class MySQLLeverandoerDAO implements LeverandoerDAO {
 
 	@Override
 	public void createLeverandoer(LeverandoerDTO leverandoer) throws DALException {
-		int updateCount = Connector.doUpdate(String.format("INSERT INTO leverandoer(raavare_id, leverandoer_navn, maengde) VALUES(" + leverandoer.getRaavareId() + ", '" +
+		Connector.doUpdate(String.format("INSERT INTO leverandoer(raavare_id, leverandoer_navn, maengde) VALUES(" + leverandoer.getRaavareId() + ", '" +
 		leverandoer.getLeverandoerNavn() + "', " + leverandoer.getMaengde() + ");"));
-		if(updateCount==0)
-			throw new DALException("Failed to add new raavarebatch!");
+//		if(updateCount==0)
+//			throw new DALException("Failed to add new raavarebatch!");
 	}
 
 	@Override
 	public void updateLeverandoer(LeverandoerDTO leverandoer) throws DALException {
-		int updateCount = Connector.doUpdate(String.format("UPDATE leverandoer SET maengde = " + leverandoer.getMaengde() +
+		Connector.doUpdate(String.format("UPDATE leverandoer SET maengde = " + leverandoer.getMaengde() +
 		"WHERE raavare_id = " + leverandoer.getRaavareId() + " AND leverandoer_navn = '" + leverandoer.getLeverandoerNavn() + "';"));
 	}
 
