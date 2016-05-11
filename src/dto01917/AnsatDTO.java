@@ -39,7 +39,7 @@ public class AnsatDTO
     }
     
     public String getCpr() { return cpr; }
-	public void setOprId(String cpr) { this.cpr = cpr; }
+	public void setCpr(String cpr) { this.cpr = cpr; }
 	public String getOprNavn() { return oprNavn; }
 	public void setOprNavn(String oprNavn) { this.oprNavn = oprNavn; }
 	public String getIni() { return ini; }
