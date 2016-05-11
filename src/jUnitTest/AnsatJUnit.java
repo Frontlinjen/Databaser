@@ -36,26 +36,31 @@ public class AnsatJUnit {
 	}
 	
 	@Test //AnsatDTO
-	public void testAnsatDTO(){
-		AnsatDTO ans = new AnsatDTO("1102990101", "Bob", "Bo", "fisken", 0);
+	public void testGetAnsat() throws DALException{
+		AnsatDTO ansat = new AnsatDTO("1102990105", "Bob", "Bo", "fisken", 0);
+		MySQLAnsatDAO ans = new MySQLAnsatDAO();
+		ans.createAnsat(ansat);
 		assertTrue
-			("Succesful retrievel of all information: ", ans.getCpr().equals("1102990101") 
-			&& ans.getOprNavn().equals("Bob") && ans.getIni().equals("Bo") 
-			&& ans.getPassword().equals("fisken") && ans.getTitel()==0);
+			("Succesful retrievel of the employee: ", 
+					ans.getAnsat("1102990105").getOprNavn().equals("Bob") &&
+					ans.getAnsat("1102990105").getIni().equals("Bo") &&
+					ans.getAnsat("1102990105").getCpr().equals("1102990105") &&
+					ans.getAnsat("1102990105").getTitel() == 0 &&
+					ans.getAnsat("1102990105").getPassword().equals("fisken"));
 	}
 	
 	@Test
 	public void testCreateAnsat()throws DALException{
-		AnsatDTO ans = new AnsatDTO("1102990181", "Bob", "Bo", "fisken",0);
 		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+		AnsatDTO ans = new AnsatDTO("1102990182", "Bob", "Bo", "fisken",0);
 		ansDAO.createAnsat(ans);
 		assertTrue
-			("Succes creating the employee with the CPR: 1102990181, name: Bob, Initials: Bo, Password: fisken ", 
-			ansDAO.getAnsat("1102990181").getOprNavn().equals("Bob") &&
-			ansDAO.getAnsat("1102990181").getIni().equals("Bo") &&
-			ansDAO.getAnsat("1102990181").getCpr().equals("1102990181") &&
-			ansDAO.getAnsat("1102990181").getTitel() == 0 &&
-			ansDAO.getAnsat("1102990181").getPassword().equals("fisken"));
+			("Succes creating the employee with the CPR: 1102990182, name: Bob, Initials: Bo, Password: fisken ", 
+			ansDAO.getAnsat("1102990182").getOprNavn().equals("Bob") &&
+			ansDAO.getAnsat("1102990182").getIni().equals("Bo") &&
+			ansDAO.getAnsat("1102990182").getCpr().equals("1102990182") &&
+			ansDAO.getAnsat("1102990182").getTitel() == 0 &&
+			ansDAO.getAnsat("1102990182").getPassword().equals("fisken"));
 	}
 	
 	@Test
@@ -73,7 +78,8 @@ public class AnsatJUnit {
 
 	@Test 
 	public void getAnsatList() throws DALException{
-		
+		MySQLAnsatDAO ansatDAO = new MySQLAnsatDAO();
+		assertFalse("Fail, the list is not empty: ", ansatDAO.getAnsatList()==null);
 	}
 	
 }

@@ -33,18 +33,14 @@ public class RaavareJUnit {
 		}
 	}
 	
-	@Test //RaavareDTO Test
-	public void getRaavare(){
-		RaavareDTO raavare = new RaavareDTO(8, "apple");
-		assertTrue("The raavare: apple, has ID: 8", raavare.getRaavareNavn().equals("apple") && raavare.getRaavareId()==8);
-	}
-
 	@Test //RaavareDAO Test
 	public void testGetRaavare() throws DALException{
-		RaavareDTO raavareDTO = new RaavareDTO(2, "tomat");
+		RaavareDTO raavareDTO = new RaavareDTO(10, "tomat");
 		MySQLRaavareDAO raavareDAO = new MySQLRaavareDAO();
-		raavareDAO.updateRaavare(raavareDTO);
-		assertTrue("The raavare with ID 2 is: ", raavareDAO.getRaavare(2).getRaavareId()==2 && raavareDAO.getRaavare(2).getRaavareNavn().equals("tomat"));
+		raavareDAO.createRaavare(raavareDTO);
+		assertTrue("The raavare with ID 2 is tomat", 
+				raavareDAO.getRaavare(10).getRaavareId()==10 && 
+				raavareDAO.getRaavare(10).getRaavareNavn().equals("tomat"));
 		
 	}
 	
@@ -62,15 +58,18 @@ public class RaavareJUnit {
 		raavareDAO.getRaavare(1);
 //		System.out.println(raavareDAO.getRaavare(1));
 		raavareDAO.updateRaavare(raavare);
-		assertFalse("Fail, the name is no longer tomat on ID 1 ", raavareDAO.getRaavare(1).getRaavareNavn().equals("dej"));
+		assertFalse("Fail, the name is no longer tomat on ID 1 ", 
+				raavareDAO.getRaavare(1).getRaavareNavn().equals("dej"));
 	}
 	
 	@Test
 	public void testCreateRaavare() throws DALException{
-		RaavareDTO raavare = new RaavareDTO(6, "fisk");
+		RaavareDTO raavare = new RaavareDTO(8, "fisk");
 		MySQLRaavareDAO raavareDAO = new MySQLRaavareDAO();
 		raavareDAO.createRaavare(raavare);
-		assertTrue("Succes the raavare Fisk with ID 6 has been created ", raavareDAO.getRaavare(6).getRaavareId()==6 && raavareDAO.getRaavare(6).getRaavareNavn().equals("fisk"));
+		assertTrue("Succes the raavare Fisk with ID 8 has been created ", 
+				raavareDAO.getRaavare(8).getRaavareId()==8 && 
+				raavareDAO.getRaavare(8).getRaavareNavn().equals("fisk"));
 	}
 	
 	

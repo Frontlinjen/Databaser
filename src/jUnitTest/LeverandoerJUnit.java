@@ -8,7 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import connector01917.Connector;
+import daoimpl01917.MySQLLeverandoerDAO;
 import daointerfaces01917.DALException;
+import dto01917.LeverandoerDTO;
 
 public class LeverandoerJUnit {
 	
@@ -32,28 +34,53 @@ public class LeverandoerJUnit {
 	}
 	
 	@Test
-	public void testGetLeverandoer() {
-		fail("Not yet implemented");
+	public void testGetLeverandoer() throws DALException {
+		LeverandoerDTO lev = new LeverandoerDTO(8,"Kikis",1.0);
+		MySQLLeverandoerDAO levDAO = new MySQLLeverandoerDAO();
+		levDAO.createLeverandoer(lev);
+		assertTrue(
+				"The leverandoer with rv_id is Kikis: ",
+				levDAO.getLeverandoer(8, "Kikis").getLeverandoerNavn().equals("Kikis") &&
+				levDAO.getLeverandoer(8, "Kikis").getRaavareId()==8 &&
+				levDAO.getLeverandoer(8, "Kikis").getMaengde()==1.0
+		);
 	}
 
 	@Test
-	public void testGetLeverandoerList() {
-		fail("Not yet implemented");
+	public void testGetLeverandoerList() throws DALException {
+		MySQLLeverandoerDAO levDAO = new MySQLLeverandoerDAO();
+		assertFalse(
+				"Fail, the list is not empty: ", 
+				levDAO.getLeverandoerList()==null
+		);
 	}
 
 	@Test
-	public void testPopulateList() {
-		fail("Not yet implemented");
+	public void testCreateLeverandoer() throws DALException {
+		LeverandoerDTO lev = new LeverandoerDTO(10,"Kikis",1.0);
+		MySQLLeverandoerDAO levDAO = new MySQLLeverandoerDAO();
+		levDAO.createLeverandoer(lev);
+		assertTrue(
+				"The leverandoer with rv_id is Kikis: ",
+				levDAO.getLeverandoer(10, "Kikis").getLeverandoerNavn().equals("Kikis") &&
+				levDAO.getLeverandoer(10, "Kikis").getRaavareId()==10 &&
+				levDAO.getLeverandoer(10, "Kikis").getMaengde()==1.0
+		);
+		
 	}
 
 	@Test
-	public void testCreateLeverandoer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUpdateLeverandoer() {
-		fail("Not yet implemented");
+	public void testUpdateLeverandoer() throws DALException {
+		LeverandoerDTO lev = new LeverandoerDTO(5,"Kikis",5.0);
+		MySQLLeverandoerDAO levDAO = new MySQLLeverandoerDAO();
+		levDAO.updateLeverandoer(lev);
+		assertTrue(
+				"The leverandoer Kikis, has been updated.",
+				levDAO.getLeverandoer(5, "Kikis").getLeverandoerNavn().equals("Kikis") &&
+				levDAO.getLeverandoer(5, "Kikis").getRaavareId()==5 &&
+				levDAO.getLeverandoer(5, "Kikis").getMaengde()==5.0
+		);
+		
 	}
 
 }
