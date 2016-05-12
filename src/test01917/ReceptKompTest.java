@@ -75,13 +75,13 @@ public class ReceptKompTest {
 			System.out.println(e.getMessage()); 
 			}
 		
-//		System.out.println("List af alle receptkomponenter med receptId = 3: ");
-//		try { 
-//			System.out.println(rek.getReceptKompList(3));
-//			}
-//		catch (DALException e) { 
-//			System.out.println(e.getMessage()); 
-//			}
+		System.out.println("List af alle receptkomponenter med receptId = 3: ");
+		try { 
+			System.out.println(rek.getReceptKompList(3));
+			}
+		catch (DALException e) { 
+			System.out.println(e.getMessage()); 
+			}
 	}
 
 }
