@@ -35,12 +35,12 @@ public class RaavareJUnit {
 	
 	@Test //RaavareDAO Test
 	public void testGetRaavare() throws DALException{
-		RaavareDTO raavareDTO = new RaavareDTO(10, "tomat");
+		RaavareDTO raavareDTO = new RaavareDTO(16, "tomat");
 		MySQLRaavareDAO raavareDAO = new MySQLRaavareDAO();
 		raavareDAO.createRaavare(raavareDTO);
 		assertTrue("The raavare with ID 2 is tomat", 
-				raavareDAO.getRaavare(10).getRaavareId()==10 && 
-				raavareDAO.getRaavare(10).getRaavareNavn().equals("tomat"));
+				raavareDAO.getRaavare(16).getRaavareId()==16 && 
+				raavareDAO.getRaavare(16).getRaavareNavn().equals("tomat"));
 		
 	}
 	

@@ -71,17 +71,17 @@ public class ProduktbatchJUnit {
 
 	@Test
 	public void testUpdateProduktBatch() throws DALException {
-		ProduktBatchDTO pb = new ProduktBatchDTO(7,1,3);
-		ProduktBatchDTO pb1 = new ProduktBatchDTO(7,2,1);
+		ProduktBatchDTO pb = new ProduktBatchDTO(17,1,3);
+		ProduktBatchDTO pb1 = new ProduktBatchDTO(17,2,1);
 		MySQLProduktbatch pbDAO = new MySQLProduktbatch();
 		pbDAO.createProduktBatch(pb);
 		pbDAO.updateProduktBatch(pb1);
 		
 		assertTrue(
 				"Succesfully updated produktbatch",
-				pbDAO.getProduktBatch(7).getPbId()==7 &&
-				pbDAO.getProduktBatch(7).getStatus()==2 &&
-				pbDAO.getProduktBatch(7).getReceptId()==1
+				pbDAO.getProduktBatch(17).getPbId()==17 &&
+				pbDAO.getProduktBatch(17).getStatus()==2 &&
+				pbDAO.getProduktBatch(17).getReceptId()==1
 		);
 	}
 
