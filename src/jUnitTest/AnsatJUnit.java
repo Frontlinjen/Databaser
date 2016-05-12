@@ -84,57 +84,77 @@ public class AnsatJUnit {
 	
 	@Test
 	public void triggerTestVerifyCPRShort() throws DALException{
-		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
-		AnsatDTO ans = new AnsatDTO("18029601", "Bob", "Bo", "fisken",0);
-		ansDAO.createAnsat(ans);
-		fail("The employee couldn't be created due to too short CPR number.");
-		
+		try {
+			MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+			AnsatDTO ans = new AnsatDTO("18029601", "Bob", "Bo", "fisken",0);
+			ansDAO.createAnsat(ans);
+			fail("The employee couldn't be created due to too short CPR number.");
+			
+		} catch (Exception e) {
+		}		
 	}
 	
 	@Test
 	public void triggerTestVerifyCPRLong() throws DALException{
-		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
-		AnsatDTO ans = new AnsatDTO("100009800000", "Bob", "Bo", "fisken",0);
-		ansDAO.createAnsat(ans);
-		fail("The employee couldn't be created due to too long CPR number.");
-
+		try {
+			MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+			AnsatDTO ans = new AnsatDTO("100009800000", "Bob", "Bo", "fisken",0);
+			ansDAO.createAnsat(ans);
+			fail("The employee couldn't be created due to too long CPR number.");
+			
+		} catch (Exception e) {
+		}
 	}
 	
 	@Test
 	public void triggerTestInsertIni() throws DALException{
-		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
-		AnsatDTO ans = new AnsatDTO("1111990120", "Bob", "B", "fisken",0);
-		ansDAO.createAnsat(ans);
-		fail("The initials are too short.");
-		
+		try {
+			MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+			AnsatDTO ans = new AnsatDTO("1111990120", "Bob", "B", "fisken",0);
+			ansDAO.createAnsat(ans);
+			fail("The initials are too short.");	
+		} catch (Exception e) {
+		}		
 	}
 	
 	@Test
 	public void triggerTestUpdateIni() throws DALException{
-		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
-		AnsatDTO ans = new AnsatDTO("2102990441", "Bob", "Bo", "fisken",0);
-		ansDAO.createAnsat(ans);
-		AnsatDTO ans1 = new AnsatDTO("2102990441", "Bob", "B", "fisken",0);
-		ansDAO.updateAnsat(ans1);
-		fail("Could not update. The initials are too short.");
-		
+		try {
+			MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+			AnsatDTO ans = new AnsatDTO("2102990441", "Bob", "Bo", "fisken",0);
+			ansDAO.createAnsat(ans);
+			AnsatDTO ans1 = new AnsatDTO("2102990441", "Bob", "B", "fisken",0);
+			ansDAO.updateAnsat(ans1);
+			fail("Could not update. The initials are too short.");
+				
+		} catch (Exception e) {
+		}
 	}
 	
 	@Test
 	public void triggerTestInsertTitel() throws DALException{
-		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
-		AnsatDTO ans = new AnsatDTO("3102990151", "Bob", "Bo", "fisken",8);
-		ansDAO.createAnsat(ans);
-		fail("Could not create ansat. The Titel are not within the range of 0 and 3.");
+		try{		
+			MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+			AnsatDTO ans = new AnsatDTO("3102990151", "Bob", "Bo", "fisken",8);
+			ansDAO.createAnsat(ans);
+			fail("Could not create ansat. The Titel are not within the range of 0 and 3.");
+			
+		} catch (Exception e) {
+		}
 	}
 	
 	@Test
 	public void triggerTestInsertUpdate() throws DALException{
-		MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
-		AnsatDTO ans = new AnsatDTO("1102990262", "Bob", "Bo", "fisken",1);
-		AnsatDTO ans1 = new AnsatDTO("1102990262", "Bob", "Bo", "fisken",5);
-		ansDAO.createAnsat(ans1);
-		fail("Could not create ansat. The Titel are not within the range of 0 and 3.");
+		try {
+			MySQLAnsatDAO ansDAO = new MySQLAnsatDAO();
+			AnsatDTO ans = new AnsatDTO("1102990262", "Bob", "Bo", "fisken",1);
+			AnsatDTO ans1 = new AnsatDTO("1102990262", "Bob", "Bo", "fisken",5);
+			ansDAO.createAnsat(ans1);
+			fail("Could not create ansat. The Titel are not within the range of 0 and 3.");
+			
+		} catch (Exception e) {
+		}
+		
 		
 	}
 }

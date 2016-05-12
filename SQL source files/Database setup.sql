@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS recept;
 DROP TABLE IF EXISTS leverandoer;
 DROP TABLE IF EXISTS raavare;
  
-CREATE TABLE ansat(cpr VARCHAR(10) PRIMARY KEY, opr_navn TEXT, ini TEXT, password TEXT, titel INT) ENGINE=innoDB;
+CREATE TABLE ansat(cpr VARCHAR(15) PRIMARY KEY, opr_navn TEXT, ini TEXT, password TEXT, titel INT) ENGINE=innoDB;
  
 CREATE TABLE raavare(raavare_id INT PRIMARY KEY, raavare_navn TEXT) ENGINE=innoDB;
  
