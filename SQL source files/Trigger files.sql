@@ -1,9 +1,3 @@
-DROP TRIGGER IF EXISTS verifyCPRInsert;
-DROP TRIGGER IF EXISTS verifyINIInsert;
-DROP TRIGGER IF EXISTS verifyINIUpdate;
-DROP TRIGGER IF EXISTS verifyTitelUpdate;
-DROP TRIGGER IF EXISTS verifyTitelInsert;
-DROP TRIGGER IF EXISTS verifyAnsatInsert;
 DELIMITER \\
 create trigger verifyAnsatInsert
 BEFORE Insert
